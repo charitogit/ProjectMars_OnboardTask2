@@ -51,10 +51,17 @@ namespace ProjectMars_OnboardTask2.Steps
             _languagePage.AddLanguageRecord(language, level);
         }
 
+        [When("I successfully add {string} and {string}")]
+        public void WhenISuccessfullyAddAnd(string language, string level)
+        {
+            _languagePage.AddLanguageRecord(language, level);
+        }
 
-      
 
-       
+
+
+
+
 
         [Then("successful added {string} {string} should be displayed")]
         public void ThenSuccessfulAddedShouldBeDisplayed(string language, string message)
@@ -77,16 +84,19 @@ namespace ProjectMars_OnboardTask2.Steps
         {
     
             Assert.That(_assertRecord.IsErrorMessageShown(message), "Expected error message was not shown.");
+             
         }
-        
 
 
-        [Given("I verify the language {string} with level {string} exists")]
-        public void GivenIVerifyTheLanguageWithLevelExists(string language, string level)
+      
+
+
+        [When("I verify the language {string} with level {string} exists")]
+        public void WhenIVerifyTheLanguageWithLevelExists(string language, string level)
         {
             Assert.That(_assertRecord.IsRecordPresent(language, level), "Original language record was not found.");
-        
         }
+
 
 
         [When("I edit {string} to {string} and\\/or {string} to {string}")]
@@ -113,7 +123,7 @@ namespace ProjectMars_OnboardTask2.Steps
         [When("I delete existing  {string} with {string} record")]
         public void WhenIDeleteExistingWithRecord(string language, string level)
         {
-            _languagePage.DeleteLanguageRecord(language, level); 
+            _languagePage.DeleteLanguageIfExists(language, level); 
         }
 
         [Then("successful deleted {string}  {string} should be displayed")]
@@ -129,6 +139,20 @@ namespace ProjectMars_OnboardTask2.Steps
             Assert.That(recordPresent, Is.False, $"The language record '{language}' with level '{level}' should be deleted but still exists.");
 
         }
+
+
+
+
+        [When("I recreate same language record {string} and {string}")]
+        public void WhenIRecreateSameLanguageRecordAnd(string language, string level)
+        {
+            _languagePage.AddLanguageRecord(language, level);
+        }
+
+  
+ 
+
+
 
     }
 }

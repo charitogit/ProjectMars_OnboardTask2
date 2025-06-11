@@ -16,7 +16,7 @@ Scenario Outline: Create new account with valid credentials
  
 Examples:
   |TestCaseID | FirstName | LastName | Email                  | Password  | ReenterPassword | message                                           |
-  |TC004      | John      | Smith    | JohnSmith004@yahoo.com  |  JohnP@ssw0rd |  JohnP@ssw0rd    |Registration successful, Please verify your email! |
+  |TC004      | John      | Smith    | JohnSmith007@yahoo.com  |  JohnP@ssw0rd |  JohnP@ssw0rd    |Registration successful, Please verify your email! |
 
 
    
@@ -35,7 +35,7 @@ Scenario Outline: Check if newly created user can sign in after successfully joi
 
 Examples:
   | TestCaseID | FirstName | LastName | Email                    | Password  | ReenterPassword |
-  | TC005      | John    | Smith      | JohnSmith05@yahoo.com   | JohnP@ssw0rd | JohnP@ssw0rd       |
+  | TC005      | John    | Smith      | JohnSmith06@yahoo.com   | JohnP@ssw0rd | JohnP@ssw0rd       |
 
   @negative @TC007
 Scenario: Redirect to Sign-In page when accessing the Profile link without first logging-in

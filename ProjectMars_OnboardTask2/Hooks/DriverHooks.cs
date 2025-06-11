@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using Reqnroll;
@@ -18,7 +19,7 @@ namespace ProjectMars_OnboardTask2.Hooks
 
         }
        
-        [BeforeScenario]
+        [BeforeScenario (Order = 0)]
         public void InitializeWebDriver()
         {
             var options = new ChromeOptions();
@@ -29,7 +30,7 @@ namespace ProjectMars_OnboardTask2.Hooks
             _objectContainer.RegisterInstanceAs<IWebDriver>(driver);
         }
 
-        [AfterScenario]
+        [AfterScenario(Order = 100)]
         public void AfterScenario()
         {
             var driver = _objectContainer.Resolve<IWebDriver>();

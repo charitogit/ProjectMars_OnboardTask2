@@ -1,3 +1,4 @@
+using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.BiDi.Modules.Log;
@@ -5,6 +6,7 @@ using ProjectMars_OnboardTask2.Pages;
 using ProjectMars_OnboardTask2.Utilities;
 using Reqnroll;
 using System;
+using System.Reflection.Emit;
 
 
 namespace ProjectMars_OnboardTask2.Steps
@@ -40,6 +42,35 @@ namespace ProjectMars_OnboardTask2.Steps
             _skillPage.AddSkillRecord(skill, level);
         }
 
+        [When("I successfully add new {string} and {string}")]
+        public void WhenISuccessfullyAddNewAnd(string skill, string level)
+        {
+            _skillPage.AddSkillRecord(skill, level);
+        }
+
+        [When("I successfully add new skill {string} and {string}")]
+        public void WhenISuccessfullyAddNewSkillAnd(string skill, string level)
+        {
+            _skillPage.AddSkillRecord(skill, level);
+        }
+
+
+
+        [When("I recreate same skill record {string} and {string}")]
+        public void WhenIRecreateSameSkillRecordAnd(string skill, string level)
+        {
+            _skillPage.AddSkillRecord(skill, level);
+        }
+
+        [When("I recreate same skill name {string} and different level {string}")]
+        public void WhenIRecreateSameSkillNameAndDifferentLevel(string skill, string level)
+        {
+            _skillPage.AddSkillRecord(skill, level);
+        }
+
+
+
+
         [Then("successful add {string} {string} should be displayed")]
         public void ThenSuccessfulAddShouldBeDisplayed(string skill, string message)
         {
@@ -53,11 +84,13 @@ namespace ProjectMars_OnboardTask2.Steps
         }
 
 
-        [Given("I verify the skill {string} with level {string} exists")]
-        public void GivenIVerifyTheSkillWithLevelExists(string skill, string level)
+   
+        [When("I verify the skill {string} with level {string} exists")]
+        public void WhenIVerifyTheSkillWithLevelExists(string skill, string level)
         {
-            _assertRecord.IsRecordPresent(skill,level);
+            _assertRecord.IsRecordPresent(skill, level);
         }
+
 
         [When("I edit {string} to {string} and {string} to {string}")]
         public void WhenIEditToAndTo(string oldSkill, string newSkill, string oldLevel, string newLevel)
@@ -89,7 +122,7 @@ namespace ProjectMars_OnboardTask2.Steps
         [When("I delete the existing  {string} with {string} record")]
         public void WhenIDeleteTheExistingWithRecord(string skill, string level)
         {
-            _skillPage.DeleteSkillRecord(skill, level);
+            _skillPage.DeleteSkillIfExists(skill, level);
         }
 
         [Then("successful deletion  {string}  {string} should be displayed")]
@@ -107,6 +140,21 @@ namespace ProjectMars_OnboardTask2.Steps
 
         }
 
+
+        [Then("an invalid {string} should appear")]
+        public void ThenAnInvalidShouldAppear(string message)
+        {
+            _assertRecord.IsErrorMessageShown(message);
+        }
+
+        [Then("a duplicate error {string} should appear")]
+        public void ThenADuplicateErrorShouldAppear(string message)
+        {
+            _assertRecord.IsErrorMessageShown(message); 
+        }
+
+
+        
 
 
 

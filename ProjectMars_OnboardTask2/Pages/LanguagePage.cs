@@ -92,29 +92,61 @@ namespace ProjectMars_OnboardTask2.Pages
             updateButton.Click();
         }
 
-
-
-        public void DeleteLanguageRecord(string language, string level)
+        public bool IsLanguageRecordEmpty()
         {
-            //  Click  "Language" tab
-            string tabXPath = "//*[@id='account-profile-section']//a[contains(text(),'Languages')]";
-            Wait.WaitToBeVisible(_driver, "XPath", tabXPath, 10);
-            _driver.FindElement(By.XPath(tabXPath)).Click();
+            // Locate all rows inside the tbody of the table
+            var rows = _driver.FindElements(By.XPath("//table/tbody/tr"));
 
-            //Wait Language tab content to become active
-            string activeTabContentXPath = "//div[@data-tab='first' and contains(@class, 'active')]";
-            Wait.WaitToBeVisible(_driver, "XPath", activeTabContentXPath, 10);
+            // Return true if no rows are found 
+            return rows.Count == 0;
+        }
+        public void DeleteAllLanguages()
+        {
+           // GoToLanguageTab();
 
-            // BuildXPath for the delete button in the matching skill row
-            string deleteButtonXPath = $"{activeTabContentXPath}//table/tbody/tr[td[1][normalize-space()='{language}'] and td[2][normalize-space()='{level}']]//i[@class='remove icon']";
+            string rowsXPath = "//table[@class='ui fixed table']/tbody/tr";
+            var rows = _driver.FindElements(By.XPath(rowsXPath));
 
-            // Wait  and click  delete button
-            Wait.WaitToBeClickable(_driver, "XPath", deleteButtonXPath, 10);
-            _driver.FindElement(By.XPath(deleteButtonXPath)).Click();
+            while (rows.Count > 0)
+            {
+                var deleteButton = rows[0].FindElement(By.XPath(".//i[@class='remove icon']"));
+                deleteButton.Click();
+                Wait.WaitToBeVisible(_driver, "XPath", "//div[contains(@class,'ns-show')]", 5); // Wait for toast
+                //Wait.WaitForElementToDisappear(_driver, "XPath", rowsXPath, 10);
+                rows = _driver.FindElements(By.XPath(rowsXPath));
+            }
+        }
+ 
+     
+        public void DeleteLanguageIfExists(string language, string level)
+        {
+            try
+            {
+                GoToLanguageTab();
+
+                string activeTabContentXPath = "//div[@data-tab='first' and contains(@class, 'active')]";
+                string deleteButtonXPath = $"{activeTabContentXPath}//table/tbody/tr[td[1][normalize-space()='{language}'] and td[2][normalize-space()='{level}']]//i[@class='remove icon']";
+
+                var deleteButtons = _driver.FindElements(By.XPath(deleteButtonXPath));
+                if (deleteButtons.Count > 0)
+                {
+                    Wait.WaitToBeClickable(_driver, "XPath", deleteButtonXPath, 5);
+                    deleteButtons[0].Click();
+
+                    Console.WriteLine($"[Cleanup] Deleted language: {language}, Level: {level}");
+                }
+                else
+                {
+                    Console.WriteLine($"[Cleanup] No record found for: {language}, Level: {level}");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("[Cleanup] ERROR deleting language (safe): " + ex.Message);
+            }
         }
 
-
-
+        
 
     }
 }

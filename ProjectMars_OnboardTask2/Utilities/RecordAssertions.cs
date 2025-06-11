@@ -48,8 +48,10 @@ namespace ProjectMars_OnboardTask2.Utilities
         {
             try
             {
+              
                 Wait.WaitToBeVisible(_driver, "XPath", "//div[contains(@class, 'ns-show')]", 10);
                 string actualMessage = _driver.FindElement(By.XPath("//div[contains(@class, 'ns-show')]")).Text.Trim();
+
                 return actualMessage.Equals(expectedMessage, StringComparison.OrdinalIgnoreCase);
             }
             catch (NoSuchElementException)

@@ -25,7 +25,11 @@ namespace ProjectMars_OnboardTask2.Pages
             Wait.WaitToBeVisible(_driver, "XPath", tabXPath, 10);
             _driver.FindElement(By.XPath(tabXPath)).Click();
 
-            
+            // Wait for the Skills section to be active
+            string activeTabContentXPath = "//div[@data-tab='second' and contains(@class, 'active')]";
+            Wait.WaitToBeVisible(_driver, "XPath", activeTabContentXPath, 10);
+
+
         }
         public void AddSkillRecord(string skill, string level)
         {
@@ -99,25 +103,54 @@ namespace ProjectMars_OnboardTask2.Pages
             updateButton.Click();
         }
 
-        public void DeleteSkillRecord(string skill, string level)
+      
+        public void DeleteAllSkills()
         {
-            //  Click  "Skills" tab
-            string tabXPath = "//*[@id='account-profile-section']//a[contains(text(),'Skills')]";
-            Wait.WaitToBeVisible(_driver, "XPath", tabXPath, 10);
-            _driver.FindElement(By.XPath(tabXPath)).Click();
+           // GoToSkillsTab();
 
-            //Wait Skills tab content to become active
-            string activeTabContentXPath = "//div[@data-tab='second' and contains(@class, 'active')]";
-            Wait.WaitToBeVisible(_driver, "XPath", activeTabContentXPath, 10);
+            string rowsXPath = "//table[@class='ui fixed table']/tbody/tr";
+            var rows = _driver.FindElements(By.XPath(rowsXPath));
 
-            // BuildXPath for the delete button in the matching skill row
-            string deleteButtonXPath = $"{activeTabContentXPath}//table/tbody/tr[td[1][normalize-space()='{skill}'] and td[2][normalize-space()='{level}']]//i[@class='remove icon']";
-
-            // Wait  and click  delete button
-            Wait.WaitToBeClickable(_driver, "XPath", deleteButtonXPath, 10);
-            _driver.FindElement(By.XPath(deleteButtonXPath)).Click();
+            while (rows.Count > 0)
+            {
+                var deleteButton = rows[0].FindElement(By.XPath(".//i[@class='remove icon']"));
+                deleteButton.Click();
+                Wait.WaitToBeVisible(_driver, "XPath", "//div[contains(@class,'ns-show')]", 5); // Wait for toast
+           //   Wait.WaitForElementToDisappear(_driver, "XPath", rowsXPath, 10);
+                rows = _driver.FindElements(By.XPath(rowsXPath));
+            }
         }
 
-        
+    
+
+        public void DeleteSkillIfExists(string skill, string level)
+        {
+            try
+            {
+                GoToSkillTab();
+
+                //locate delete button under skill tab 
+                string activeTabContentXPath = "//div[@data-tab='second' and contains(@class, 'active')]";
+                string deleteButtonXPath = $"{activeTabContentXPath}//table/tbody/tr[td[1][normalize-space()='{skill}'] and td[2][normalize-space()='{level}']]//i[@class='remove icon']";
+
+                var deleteButtons = _driver.FindElements(By.XPath(deleteButtonXPath));
+                if (deleteButtons.Count > 0)
+                {
+                    Wait.WaitToBeClickable(_driver, "XPath", deleteButtonXPath, 5);
+                    deleteButtons[0].Click();
+                    Console.WriteLine($"[Cleanup] Deleted language: {skill}, Level: {level}");
+                }
+                else
+                {
+                    Console.WriteLine($"[Cleanup] No record found for: {skill}, Level: {level}");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("[Cleanup] ERROR deleting skill (safe): " + ex.Message);
+            }
+        }
+
+      
     }
 }

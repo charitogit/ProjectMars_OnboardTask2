@@ -103,30 +103,19 @@ namespace ProjectMars_OnboardTask2.Features
             await testRunner.CollectScenarioErrorsAsync();
         }
         
-        public virtual async global::System.Threading.Tasks.Task FeatureBackgroundAsync()
-        {
-#line 9
-#line hidden
-#line 10
- await testRunner.GivenAsync("I am in the sign in page", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
-#line hidden
-#line 11
- await testRunner.WhenAsync("I enter valid \"charie_artz@yahoo.com\" and valid \"P@ssw0rd\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
-#line hidden
-#line 12
- await testRunner.ThenAsync("I should see my profile page with greeting \"Hi Charito\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
-#line hidden
-        }
-        
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Add new skill with valid details")]
         [NUnit.Framework.CategoryAttribute("positive")]
+        [NUnit.Framework.CategoryAttribute("SkillCleanup")]
+        [NUnit.Framework.CategoryAttribute("RequiresSignIn")]
         [NUnit.Framework.TestCaseAttribute("TC036", "Communication", "Intermediate", "has been added to your skills", null)]
         [NUnit.Framework.TestCaseAttribute("TC036", "Writing", "Expert", "has been added to your skills", null)]
         public async global::System.Threading.Tasks.Task AddNewSkillWithValidDetails(string testCaseID, string skill, string level, string message, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "positive"};
+                    "positive",
+                    "SkillCleanup",
+                    "RequiresSignIn"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -138,7 +127,7 @@ namespace ProjectMars_OnboardTask2.Features
             argumentsOfScenario.Add("level", level);
             argumentsOfScenario.Add("message", message);
             global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Add new skill with valid details", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 15
+#line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -148,19 +137,16 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 await this.ScenarioStartAsync();
-#line 9
-await this.FeatureBackgroundAsync();
-#line hidden
-#line 16
+#line 10
  await testRunner.GivenAsync("I am in the skill section of my profile", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
-#line 17
+#line 11
  await testRunner.WhenAsync(string.Format("I add new \"{0}\" and \"{1}\"", skill, level), ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
-#line 18
+#line 12
  await testRunner.ThenAsync(string.Format("successful add \"{0}\" \"{1}\" should be displayed", skill, message), ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
-#line 19
+#line 13
  await testRunner.AndAsync(string.Format("\"{0}\" and \"{1}\" should appear in my skill list", skill, level), ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
             }
@@ -168,16 +154,18 @@ await this.FeatureBackgroundAsync();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Add new skill with invalid details")]
+        [NUnit.Framework.DescriptionAttribute("Add new skill with invalid detail format")]
         [NUnit.Framework.CategoryAttribute("negative")]
+        [NUnit.Framework.CategoryAttribute("SkillCleanup")]
+        [NUnit.Framework.CategoryAttribute("RequiresSignIn")]
         [NUnit.Framework.TestCaseAttribute("TC037", "", "Beginner", "Please enter skill and experience level", null)]
         [NUnit.Framework.TestCaseAttribute("TC038", "Cooking", "Choose Skill Level", "Please enter skill and experience level", null)]
-        [NUnit.Framework.TestCaseAttribute("TC039", "Communication", "Intermediate", "This skill is already exist in your skill list.", null)]
-        [NUnit.Framework.TestCaseAttribute("TC040", "Communication", "Beginner", "Duplicated data", null)]
-        public async global::System.Threading.Tasks.Task AddNewSkillWithInvalidDetails(string testCaseID, string skill, string level, string message, string[] exampleTags)
+        public async global::System.Threading.Tasks.Task AddNewSkillWithInvalidDetailFormat(string testCaseID, string skill, string level, string message, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "negative"};
+                    "negative",
+                    "SkillCleanup",
+                    "RequiresSignIn"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -188,8 +176,8 @@ await this.FeatureBackgroundAsync();
             argumentsOfScenario.Add("skill", skill);
             argumentsOfScenario.Add("level", level);
             argumentsOfScenario.Add("message", message);
-            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Add new skill with invalid details", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 28
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Add new skill with invalid detail format", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 22
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -199,17 +187,104 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 await this.ScenarioStartAsync();
-#line 9
-await this.FeatureBackgroundAsync();
-#line hidden
-#line 29
+#line 23
 await testRunner.GivenAsync("I am in the skill section of my profile", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
-#line 30
+#line 24
 await testRunner.WhenAsync(string.Format("I add new \"{0}\" and \"{1}\"", skill, level), ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
-#line 31
-await testRunner.ThenAsync(string.Format("an error \"{0}\" should appear", message), ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+#line 25
+await testRunner.ThenAsync(string.Format("an invalid \"{0}\" should appear", message), ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+#line hidden
+            }
+            await this.ScenarioCleanupAsync();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Add duplicate skill record")]
+        [NUnit.Framework.CategoryAttribute("negative")]
+        [NUnit.Framework.CategoryAttribute("SkillCleanup")]
+        [NUnit.Framework.CategoryAttribute("RequiresSignIn")]
+        [NUnit.Framework.TestCaseAttribute("TC039", "Communication", "Intermediate", "This skill is already exist in your skill list.", null)]
+        public async global::System.Threading.Tasks.Task AddDuplicateSkillRecord(string testCaseID, string skill, string level, string message, string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
+                    "negative",
+                    "SkillCleanup",
+                    "RequiresSignIn"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
+            global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("testCaseID", testCaseID);
+            argumentsOfScenario.Add("skill", skill);
+            argumentsOfScenario.Add("level", level);
+            argumentsOfScenario.Add("message", message);
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Add duplicate skill record", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 34
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                await this.ScenarioStartAsync();
+#line 35
+await testRunner.GivenAsync("I am in the skill section of my profile", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
+#line hidden
+#line 36
+await testRunner.WhenAsync(string.Format("I successfully add new \"{0}\" and \"{1}\"", skill, level), ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+#line hidden
+#line 37
+await testRunner.AndAsync(string.Format("I recreate same skill record \"{0}\" and \"{1}\"", skill, level), ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 38
+await testRunner.ThenAsync(string.Format("a duplicate error \"{0}\" should appear", message), ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+#line hidden
+            }
+            await this.ScenarioCleanupAsync();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Add duplicate skill name with different skill level")]
+        [NUnit.Framework.CategoryAttribute("TC040")]
+        [NUnit.Framework.CategoryAttribute("negative")]
+        [NUnit.Framework.CategoryAttribute("SkillCleanup")]
+        [NUnit.Framework.CategoryAttribute("RequiresSignIn")]
+        public async global::System.Threading.Tasks.Task AddDuplicateSkillNameWithDifferentSkillLevel()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "TC040",
+                    "negative",
+                    "SkillCleanup",
+                    "RequiresSignIn"};
+            global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Add duplicate skill name with different skill level", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 46
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                await this.ScenarioStartAsync();
+#line 47
+await testRunner.GivenAsync("I am in the skill section of my profile", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
+#line hidden
+#line 48
+await testRunner.WhenAsync("I successfully add new \"Communication\" and \"Intermediate\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+#line hidden
+#line 49
+await testRunner.AndAsync("I recreate same skill name \"Communication\" and different level \"Beginner\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 50
+await testRunner.ThenAsync("a duplicate error \"Duplicated data\" should appear", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();
@@ -218,11 +293,15 @@ await testRunner.ThenAsync(string.Format("an error \"{0}\" should appear", messa
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Edit skill record with valid details")]
         [NUnit.Framework.CategoryAttribute("positive")]
+        [NUnit.Framework.CategoryAttribute("SkillCleanup")]
+        [NUnit.Framework.CategoryAttribute("RequiresSignIn")]
         [NUnit.Framework.TestCaseAttribute("TC043", "Writing", "Technical Writing", "Expert", "Expert", "has been updated to your skills", null)]
         public async global::System.Threading.Tasks.Task EditSkillRecordWithValidDetails(string testCaseID, string skillOld, string skillNew, string levelOld, string levelNew, string message, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "positive"};
+                    "positive",
+                    "SkillCleanup",
+                    "RequiresSignIn"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -236,7 +315,7 @@ await testRunner.ThenAsync(string.Format("an error \"{0}\" should appear", messa
             argumentsOfScenario.Add("levelNew", levelNew);
             argumentsOfScenario.Add("message", message);
             global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Edit skill record with valid details", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 43
+#line 53
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -246,22 +325,22 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 await this.ScenarioStartAsync();
-#line 9
-await this.FeatureBackgroundAsync();
-#line hidden
-#line 44
+#line 54
 await testRunner.GivenAsync("I am in the skill section of my profile", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
-#line 45
+#line 55
+await testRunner.WhenAsync(string.Format("I successfully add new skill \"{0}\" and \"{1}\"", skillOld, levelOld), ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+#line hidden
+#line 56
 await testRunner.AndAsync(string.Format("I verify the skill \"{0}\" with level \"{1}\" exists", skillOld, levelOld), ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
-#line 46
+#line 57
 await testRunner.WhenAsync(string.Format("I edit \"{0}\" to \"{1}\" and \"{2}\" to \"{3}\"", skillOld, skillNew, levelOld, levelNew), ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
-#line 47
+#line 58
 await testRunner.ThenAsync(string.Format("successful update message \"{0}\" \"{1}\" should be displayed", skillNew, message), ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
-#line 48
+#line 59
 await testRunner.AndAsync(string.Format("updated \"{0}\" and \"{1}\" should be shown  in the list", skillNew, levelNew), ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
             }
@@ -271,13 +350,16 @@ await testRunner.AndAsync(string.Format("updated \"{0}\" and \"{1}\" should be s
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Edit skill record with invalid details")]
         [NUnit.Framework.CategoryAttribute("negative")]
+        [NUnit.Framework.CategoryAttribute("SkillCleanup")]
+        [NUnit.Framework.CategoryAttribute("RequiresSignIn")]
         [NUnit.Framework.TestCaseAttribute("TC044", "Communication", "", "Intermediate", "Expert", "Please enter skill and experience level", null)]
-        [NUnit.Framework.TestCaseAttribute("TC045", "Communication", "Public Speaking", "Intermediate", "Skill Level", "Please enter skill and experience level", null)]
-        [NUnit.Framework.TestCaseAttribute("TC046", "Communication", "Technical Writing", "Intermediate", "Expert", "This skill is already added to your skill list.", null)]
+        [NUnit.Framework.TestCaseAttribute("TC045", "Communication", "Writing", "Intermediate", "Skill Level", "Please enter skill and experience level", null)]
         public async global::System.Threading.Tasks.Task EditSkillRecordWithInvalidDetails(string testCaseID, string skillOld, string skillNew, string levelOld, string levelNew, string message, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "negative"};
+                    "negative",
+                    "SkillCleanup",
+                    "RequiresSignIn"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -291,7 +373,7 @@ await testRunner.AndAsync(string.Format("updated \"{0}\" and \"{1}\" should be s
             argumentsOfScenario.Add("levelNew", levelNew);
             argumentsOfScenario.Add("message", message);
             global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Edit skill record with invalid details", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 56
+#line 66
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -301,19 +383,76 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 await this.ScenarioStartAsync();
-#line 9
-await this.FeatureBackgroundAsync();
-#line hidden
-#line 57
+#line 67
 await testRunner.GivenAsync("I am in the skill section of my profile", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
-#line 58
+#line 68
+await testRunner.WhenAsync("I successfully add new skill \"Communication\" and \"Intermediate\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+#line hidden
+#line 69
 await testRunner.AndAsync(string.Format("I verify the skill \"{0}\" with level \"{1}\" exists", skillOld, levelOld), ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
-#line 59
+#line 70
 await testRunner.WhenAsync(string.Format("I edit \"{0}\" to \"{1}\" and \"{2}\" to \"{3}\"", skillOld, skillNew, levelOld, levelNew), ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
-#line 60
+#line 71
+await testRunner.ThenAsync(string.Format("an error \"{0}\" should be displayed", message), ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+#line hidden
+            }
+            await this.ScenarioCleanupAsync();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Edit duplicate skill record")]
+        [NUnit.Framework.CategoryAttribute("negative")]
+        [NUnit.Framework.CategoryAttribute("SkillCleanup")]
+        [NUnit.Framework.CategoryAttribute("RequiresSignIn")]
+        [NUnit.Framework.TestCaseAttribute("TC046", "Communication", "Technical Writing", "Intermediate", "Expert", "This skill is already added to your skill list.", null)]
+        public async global::System.Threading.Tasks.Task EditDuplicateSkillRecord(string testCaseID, string skillOld, string skillNew, string levelOld, string levelNew, string message, string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
+                    "negative",
+                    "SkillCleanup",
+                    "RequiresSignIn"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
+            global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("testCaseID", testCaseID);
+            argumentsOfScenario.Add("skillOld", skillOld);
+            argumentsOfScenario.Add("skillNew", skillNew);
+            argumentsOfScenario.Add("levelOld", levelOld);
+            argumentsOfScenario.Add("levelNew", levelNew);
+            argumentsOfScenario.Add("message", message);
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Edit duplicate skill record", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 80
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                await this.ScenarioStartAsync();
+#line 81
+await testRunner.GivenAsync("I am in the skill section of my profile", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
+#line hidden
+#line 82
+await testRunner.WhenAsync("I successfully add new skill \"Communication\" and \"Intermediate\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+#line hidden
+#line 83
+await testRunner.AndAsync("I successfully add new skill \"Technical Writing\" and \"Expert\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 84
+await testRunner.AndAsync(string.Format("I verify the skill \"{0}\" with level \"{1}\" exists", skillOld, levelOld), ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 85
+await testRunner.WhenAsync(string.Format("I edit \"{0}\" to \"{1}\" and \"{2}\" to \"{3}\"", skillOld, skillNew, levelOld, levelNew), ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+#line hidden
+#line 86
 await testRunner.ThenAsync(string.Format("an error \"{0}\" should be displayed", message), ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
             }
@@ -322,17 +461,28 @@ await testRunner.ThenAsync(string.Format("an error \"{0}\" should be displayed",
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Delete skill record")]
+        [NUnit.Framework.CategoryAttribute("negative")]
+        [NUnit.Framework.CategoryAttribute("SkillCleanup")]
+        [NUnit.Framework.CategoryAttribute("RequiresSignIn")]
         [NUnit.Framework.TestCaseAttribute("TC050", "Communication", "Intermediate", "has been deleted", null)]
         public async global::System.Threading.Tasks.Task DeleteSkillRecord(string testCaseID, string skill, string level, string message, string[] exampleTags)
         {
-            string[] tagsOfScenario = exampleTags;
+            string[] @__tags = new string[] {
+                    "negative",
+                    "SkillCleanup",
+                    "RequiresSignIn"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
             global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("testCaseID", testCaseID);
             argumentsOfScenario.Add("skill", skill);
             argumentsOfScenario.Add("level", level);
             argumentsOfScenario.Add("message", message);
             global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Delete skill record", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 69
+#line 93
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -342,22 +492,22 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 await this.ScenarioStartAsync();
-#line 9
-await this.FeatureBackgroundAsync();
-#line hidden
-#line 70
+#line 94
 await testRunner.GivenAsync("I am in the skill section of my profile", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
-#line 71
+#line 95
+await testRunner.WhenAsync("I successfully add new skill \"Communication\" and \"Intermediate\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+#line hidden
+#line 96
 await testRunner.AndAsync(string.Format("I verify the skill \"{0}\" with level \"{1}\" exists", skill, level), ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
-#line 72
+#line 97
 await testRunner.WhenAsync(string.Format("I delete the existing  \"{0}\" with \"{1}\" record", skill, level), ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
-#line 73
+#line 98
 await testRunner.ThenAsync(string.Format("successful deletion  \"{0}\"  \"{1}\" should be displayed", skill, message), ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
-#line 74
+#line 99
 await testRunner.AndAsync(string.Format("the \"{0}\" with \"{1}\" record should be removed from the list", skill, level), ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
             }

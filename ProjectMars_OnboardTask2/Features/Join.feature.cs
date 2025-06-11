@@ -107,7 +107,7 @@ namespace ProjectMars_OnboardTask2.Features
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Create new account with valid credentials")]
         [NUnit.Framework.CategoryAttribute("positive")]
-        [NUnit.Framework.TestCaseAttribute("TC004", "John", "Smith", "JohnSmith004@yahoo.com", "JohnP@ssw0rd", "JohnP@ssw0rd", "Registration successful, Please verify your email!", null)]
+        [NUnit.Framework.TestCaseAttribute("TC004", "John", "Smith", "JohnSmith007@yahoo.com", "JohnP@ssw0rd", "JohnP@ssw0rd", "Registration successful, Please verify your email!", null)]
         public async global::System.Threading.Tasks.Task CreateNewAccountWithValidCredentials(string testCaseID, string firstName, string lastName, string email, string password, string reenterPassword, string message, string[] exampleTags)
         {
             string[] @__tags = new string[] {
@@ -161,7 +161,7 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Check if newly created user can sign in after successfully joining")]
         [NUnit.Framework.CategoryAttribute("positive")]
-        [NUnit.Framework.TestCaseAttribute("TC005", "John", "Smith", "JohnSmith05@yahoo.com", "JohnP@ssw0rd", "JohnP@ssw0rd", null)]
+        [NUnit.Framework.TestCaseAttribute("TC005", "John", "Smith", "JohnSmith06@yahoo.com", "JohnP@ssw0rd", "JohnP@ssw0rd", null)]
         public async global::System.Threading.Tasks.Task CheckIfNewlyCreatedUserCanSignInAfterSuccessfullyJoining(string testCaseID, string firstName, string lastName, string email, string password, string reenterPassword, string[] exampleTags)
         {
             string[] @__tags = new string[] {
